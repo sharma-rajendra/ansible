@@ -1,0 +1,11 @@
+---
+- hosts: "{{ hostgroup }}"
+  remote_user: jenkins
+  become: yes
+  become_method: sudo
+  serial: 1
+  tasks:
+    - name: myservice container
+      shell: docker restart "{{ container_name }}"
+    - pause:
+        seconds: "{{ seconds }}"
